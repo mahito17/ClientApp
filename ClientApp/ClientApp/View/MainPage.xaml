@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ClientApp"
+             x:Class="ClientApp.View.MainPage">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView Header="Contactos"
+                  Footer="Todos los Derechos Reservador 218"
+                  HasUnevenRows="True"
+                  RowHeight="20"
+                  SeparatorColor="Green">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout VerticalOptions="FillAndExpand"
+                                     Padding="10"
+                                     BackgroundColor="Black">
+                            <Label 
+                                   TextColor="Gray"
+                                   VerticalOptions="Center">
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Label Text="Los Que Toman"
+                                   TextColor="Brown"></Label>
+                            <Label Text="Los Que No Toman>"
+                                   TextColor="Maroon"></Label>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Nombre"></Label>
+                            <Label Text="Telefono"></Label>
+                            <Image Source="icon.png"></Image>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
+    
