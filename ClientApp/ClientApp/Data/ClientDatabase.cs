@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using SQLite;
 using ClientApp.Model;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using ClientApp.Helpers;
 
 namespace ClientApp.Data
 {
@@ -28,7 +29,7 @@ namespace ClientApp.Data
 
         public Task<Client> GetClientAsync(int id)
         {
-            return database.Table<Client>().Where(f =>f.ID == id). FirstOrDefaultAsync();
+            return database.Table<Client>().Where(f => f.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveClientAsync(Client client)
@@ -42,12 +43,35 @@ namespace ClientApp.Data
                 return database.InsertAsync(client);
             }
         }
-            public Task<int> DeleteClientAsync(Client client)
+        public Task<int> DeleteClientAsync(Client client)
         {
             return database.DeleteAsync(client);
         }
 
+        public
+        ObservableCollection
+        <Grouping<string, Client>>
+        GetAllGrouped()
+        {
+            IEnumerable<Grouping<string, Client>> sorted = new Grouping<string, Client>[0];
+
+            if (Clients != null)
+            {
+                sorted =
+                from f in Clients
+                orderby f.FirstName
+                group f by f.FirstName[0].ToString()
+                into theGroup
+                select
+                new Grouping<string, Client>
+                (theGroup.Key, theGroup);
+            }
+            return new
+                ObservableCollection
+                <Grouping<string, Client>>(sorted);
 
 
+        }
     }
+
 }
