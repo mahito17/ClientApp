@@ -2,15 +2,42 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ClientApp.ViewModel
 {
-    class ClientViewModel
+    public class ClientViewModel
     {
-        public Command SaveCommand { get; set; }
-        public Command DeleteCommand { get; set; }
-        public bool IsEnabled { get; set; }
-        public Client ClientModel { get; set; }
+        public Command SaveClientCommand
+        {
+            get;
+            set;
+        }
+        public Client ClientModel
+        {
+            get;
+            set;
+        }
+        private INavigation Navigation;
+
+        public ClientViewModel(INavigation navigation)
+        {
+            ClientModel = new Client();
+            SaveClientCommand = new Command(async () => await SaveClient());
+            Navigation = navigation;
+        }
+        public ClientViewModel(INavigation navigation, Client client)
+        {
+            ClientModel = client;
+            SaveClientCommand = new Command(async () => await SaveClient());
+            Navigation = navigation;
+        }
+
+        public async Task SaveClient()
+        {
+            await App.Database.SaveFriendAsync(ClientModel);
+            await Navigation.PopToRootAsync();
+        }
     }
 }

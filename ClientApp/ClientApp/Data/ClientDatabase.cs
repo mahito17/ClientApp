@@ -43,6 +43,12 @@ namespace ClientApp.Data
                 return database.InsertAsync(client);
             }
         }
+
+        internal Task SaveFriendAsync(Client clientModel)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<int> DeleteClientAsync(Client client)
         {
             return database.DeleteAsync(client);

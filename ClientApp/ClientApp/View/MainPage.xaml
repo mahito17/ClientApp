@@ -1,48 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ClientApp"
+             xmlns:local="clr-namespace:ClientApp.Behaviors"
              x:Class="ClientApp.View.MainPage">
-
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ItempedAttached x:Key="CommBeha"></local:ItempedAttached>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+">
+        <ToolbarItem Text="+"
+                     Command="{Binding AddClientCommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <ListView Header="Contactos"
-                  Footer="Todos los Derechos Reservador 218"
+        <SearchBar Text="{Binding Filter}"
+                   SearchCommand="{Binding SearchCommand}"
+                   Placeholder="Ingrese el Nombre">
+
+        </SearchBar>
+        <ListView ItemsSource="{Binding Clients}"
+                  Header="Contactos"
+                  Footer="Copyright, @Derechos Reservados 2018"
+                  SeparatorColor="Green"
                   HasUnevenRows="True"
                   RowHeight="20"
-                  SeparatorColor="Green">
+                  IsGroupingEnabled="True"
+                  GroupShortNameBinding="{Binding Key}"
+                  local:ItempedAttached.Command ="{Binding ItemTappedCommand}"
+                  SelectedItem="{Binding CurrentFriend}">
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout VerticalOptions="FillAndExpand"
                                      Padding="10"
-                                     BackgroundColor="Black">
-                            <Label 
-                                   TextColor="Gray"
-                                   VerticalOptions="Center">
+                                     BackgroundColor="Orange">
+                            <Label
+                                Text="{Binding Key}"
+                                BackgroundColor="Black"
+                                TextColor="Gold"
+                                VerticalOptions="Center">
                             </Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
-            <ListView.HeaderTemplate>
+            <ListView.Header>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="Center">
-                            <Label Text="Los Que Toman"
-                                   TextColor="Brown"></Label>
-                            <Label Text="Los Que No Toman>"
-                                   TextColor="Maroon"></Label>
-
+                            <Label Text="Clientes VIP "
+                                   TextColor="Green">
+                            </Label>
+                            <Label Text="Gente que no le pone el alma"
+                                   TextColor="Black">
+                            </Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.HeaderTemplate>
+            </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -52,15 +69,26 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Text="Nombre"></Label>
-                            <Label Text="Telefono"></Label>
-                            <Image Source="icon.png"></Image>
+                            <Label Text="{Binding Nombre}"></Label>
+                            <Label Text="{Binding Telefono}"></Label>
+                            <Image Source="ic_launcher.png"></Image>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                        <Label Text="Texto 1"
+                                   TextColor="Purple">
+                        </Label>
+                        <Label Text="Texto 2"
+                                   TextColor="CornflowerBlue">
+                        </Label>
+                    </StackLayout>
+                </DataTemplate>
+            </ListView.FooterTemplate>
         </ListView>
     </StackLayout>
-
-</ContentPage>
-    
+</ContentPage>    
