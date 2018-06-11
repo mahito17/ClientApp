@@ -16,6 +16,11 @@ namespace ClientApp.Data
             database.CreateTableAsync<Client>().Wait();
         }
 
+        internal Task<IList<Client>> GetClientAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Client>> GetClientsAsnyc()
         {
             return await database.Table<Client>().ToListAsync();
