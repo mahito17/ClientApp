@@ -9,13 +9,13 @@ namespace ClientApp.Model
 
     public class ClientRepository
     {
-        private IEnumerable<Grouping<string, Client>> sorted;
         #region Propiedades
         public IList<Client> Clients { get; set; }
         #endregion
         public ClientRepository()
         {
-            Task.Run(async () => Clients = await App.Database.GetClientsAsnyc()).Wait();
+            Task.Run(async () =>
+            Clients = await App.Database.GetClientsAsnyc()).Wait();
         }
 
         public IList<Client> GetAll()
@@ -25,8 +25,11 @@ namespace ClientApp.Model
 
         public ObservableCollection<Grouping<string, Client>> GetAllGrouped()
         {
+            IEnumerable<Grouping<string, Client>> sorted = new Grouping<string, Client>[0];
+
             if (Clients != null)
             {
+
                 sorted =
                 from f in Clients
                 orderby f.Nombre

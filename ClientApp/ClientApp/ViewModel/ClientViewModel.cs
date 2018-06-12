@@ -9,16 +9,10 @@ namespace ClientApp.ViewModel
 {
     public class ClientViewModel
     {
-        public Command SaveClientCommand
-        {
-            get;
-            set;
-        }
-        public Client ClientModel
-        {
-            get;
-            set;
-        }
+        public Command SaveClientCommand { get; set; }
+
+        public Client ClientModel { get; set; }
+
         private INavigation Navigation;
 
         public ClientViewModel(INavigation navigation)

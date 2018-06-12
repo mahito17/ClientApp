@@ -16,42 +16,33 @@ namespace ClientApp.Data
             database = new SQLiteAsyncConnection(dbPatch);
             database.CreateTableAsync<Client>().Wait();
         }
-
-        internal Task<IList<Client>> GetClientAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<Client>> GetClientsAsnyc()
         {
             return await database.Table<Client>().ToListAsync();
         }
 
-        public Task<Client> GetClientAsync(int id)
+        public Task<Client> GetItemAsync(int id)
         {
-            return database.Table<Client>().Where(f => f.ID == id).FirstOrDefaultAsync();
+            return database.Table<Client>()
+                .Where(f => f.ID == id)
+                .FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveClientAsync(Client client)
+        public Task<int> SaveItemAsync(Client item)
         {
-            if (client.ID != 0)
+            if (item.ID != 0)
             {
-                return database.UpdateAsync(client);
+                return database.UpdateAsync(item);
             }
             else
             {
-                return database.InsertAsync(client);
+                return database.InsertAsync(item);
             }
         }
 
-        internal Task SaveFriendAsync(Client clientModel)
+        public Task<int> DeleteItemAsync(Client item)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> DeleteClientAsync(Client client)
-        {
-            return database.DeleteAsync(client);
+            return database.DeleteAsync(item);
         }
 
         public

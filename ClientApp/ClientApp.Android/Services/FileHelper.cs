@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using ClientApp.Droid.Services;
+using ClientApp.Services;
+using Android.Graphics;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FileHelper))]
 namespace ClientApp.Droid.Services
 {
     public class FileHelper : IFileHelper
     {
-        public FileHelper()
-        {
-        }
 
-        public string GetLocalFilePatch(string Filename)
+        public string GetLocalFilePath(string filename)
         {
-            string patch = Environment.GetFolderPatch(Environment.SpecialFolder.Personal);
-            return Patch.Combine(patch, filename);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            return Path.Combine(path, filename);
+            //Verificar esta clase por que genera error
+
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ClientApp
             {
                 if (database == null)
                 {
-                    database = new ClientDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePatch("clientsdb.db3"));
+                    database = new ClientDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("clientsdb.db3"));
                 }
 
                 return database;

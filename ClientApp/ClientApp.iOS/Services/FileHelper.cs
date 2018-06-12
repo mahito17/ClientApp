@@ -9,11 +9,7 @@ namespace ClientApp.iOS.Services
 {
     public class FileHelper : IFileHelper
     {
-        public FileHelper()
-        {
-
-        }
-        public string GetLocalFilePatch(string fileName)
+        public string GetLocalFilePath(string fileName)
         {
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string libFolder = Path.Combine(docFolder, "..", "Databases");

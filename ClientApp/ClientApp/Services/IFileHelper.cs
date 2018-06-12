@@ -6,6 +6,6 @@ namespace ClientApp.Services
 {
    public interface IFileHelper
     {
-        string GetLocalFilePatch(string filename);
+        string GetLocalFilePath(string filename);
     }
 }
