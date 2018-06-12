@@ -30,7 +30,7 @@ namespace ClientApp.ViewModel
 
         public async Task SaveClient()
         {
-            await App.Database.SaveFriendAsync(ClientModel);
+            await App.Database.SaveItemAsync(ClientModel);
             await Navigation.PopToRootAsync();
         }
     }

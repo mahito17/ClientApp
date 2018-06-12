@@ -3,10 +3,10 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Xamarin.Forms;
 namespace ClientApp.Model
 {
-    public class Client : Notificable
+    public class Client : INotificablePropertyChanged
     {
         #region Atributos
         [PrimaryKey, AutoIncrement]
@@ -17,37 +17,67 @@ namespace ClientApp.Model
         #endregion
 
         #region Propiedades
-        public string Correo
+
+        public string Nombre
         {
-            get { return correo; }
-            set
+            get
+
             {
-                SetValue(ref correo, value);
+                return nombre;
+
             }
+
+            set
+
+            {
+                SetValue(ref nombre, value);
+
+            }
+
         }
+
 
 
         public string Telefono
         {
-            get { return telefono; }
+            get
+            {
+                return telefono;
+
+            }
+
             set
+
             {
                 SetValue(ref telefono, value);
             }
         }
 
 
-        public string Nombre
+
+        public string Correo
         {
-            get { return nombre; }
-            set
+            get
+
             {
-                SetValue(ref nombre, value);
+                return correo;
+
             }
+            set
+
+            {
+                SetValue(ref correo, value);
+
+            }
+
         }
+
         #endregion
 
+    }
 
+    public interface INotificablePropertyChanged
+    {
 
     }
 }
