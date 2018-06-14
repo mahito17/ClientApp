@@ -9,6 +9,9 @@ namespace ClientApp.Droid.Services
 {
     public class FileHelper : IFileHelper
     {
+        public FileHelper()
+        {
+        }
 
         public string GetLocalFilePath(string filename)
         {
