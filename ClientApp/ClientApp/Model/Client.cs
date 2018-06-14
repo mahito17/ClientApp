@@ -3,7 +3,10 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Xamarin.Forms;
+using System.Linq;
+using System.Threading.Tasks;
+
+
 namespace ClientApp.Model
 {
     public class Client : INotificablePropertyChanged

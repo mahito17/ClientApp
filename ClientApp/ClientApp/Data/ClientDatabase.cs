@@ -45,8 +45,7 @@ namespace ClientApp.Data
             return database.DeleteAsync(item);
         }
 
-        public
-        ObservableCollection
+        public ObservableCollection
         <Grouping<string, Client>>
         GetAllGrouped()
         {

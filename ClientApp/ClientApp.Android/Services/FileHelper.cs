@@ -2,7 +2,6 @@
 using System.IO;
 using ClientApp.Droid.Services;
 using ClientApp.Services;
-using Android.Graphics;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FileHelper))]
